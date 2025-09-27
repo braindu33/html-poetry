@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poème Dispersé</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0a0a0a, #1a1a2e);
+            color: #ffffff;
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .poem-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .title {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.5em;
+            font-weight: bold;
+            opacity: 0.9;
+            color: #ffffff;
+        }
+
+        .word {
+            position: absolute;
+            font-size: 1.2em;
+            opacity: 0;
+            transition: all 2s ease-in-out;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .word.show {
+            animation: appear 1s ease-in-out forwards;
+        }
+
+        @keyframes appear {
+            to { opacity: 0.8; }
+        }
+
+        .word:hover {
+            opacity: 1 !important;
+            transform: scale(1.2);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .verse-1 { color: #ff6b6b; }
+        .verse-2 { color: #4ecdc4; }
+        .verse-3 { color: #ffe66d; }
+        .verse-4 { color: #ff8b94; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes drift {
+            0% { transform: translateX(0px); }
+            50% { transform: translateX(20px); }
+            100% { transform: translateX(-20px); }
+        }
+
+        .floating { animation: float 3s ease-in-out infinite; }
+        .drifting { animation: drift 4s ease-in-out infinite; }
+
+        .main-text {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5em;
+            text-align: center;
+            opacity: 1;
+            animation: fadeOut 2s ease-in-out 3s forwards;
+        }
+
+        @keyframes fadeOut {
+            to { opacity: 0; }
+        }
+
+        .final-poem {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 1.4em;
+            line-height: 1.8;
+            opacity: 0;
+            animation: finalReveal 2s ease-in-out 15s forwards;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            pointer-events: none;
+        }
+
+        @keyframes finalReveal {
+            to { opacity: 1; }
+        }
+
+        .reorganize {
+            transition: all 3s ease-in-out;
+        }
+
+        .word.final-position {
+            font-size: 1.4em !important;
+            opacity: 1 !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="poem-container">
+        <div class="title">Secrets Nocturnes</div>
+        
+        <div class="main-text">
+            Les mots dansent dans l'obscurité...
+        </div>
+
+        <!-- Scattered words that will form: "Dans le silence des nuits / les étoiles murmurent / des secrets oubliés / que seuls les rêveurs / peuvent entendre." -->
+        
+        <!-- Line 1 words -->
+        <div class="word verse-1 floating reorganize" style="top: 25%; left: 15%;" data-delay="800">Dans</div>
+        <div class="word verse-1 drifting reorganize" style="top: 70%; left: 35%;" data-delay="1600">le</div>
+        <div class="word verse-2 floating reorganize" style="top: 45%; left: 80%;" data-delay="2400">silence</div>
+        <div class="word verse-2 reorganize" style="top: 60%; left: 10%;" data-delay="3200">des</div>
+        <div class="word verse-3 drifting reorganize" style="top: 30%; left: 90%;" data-delay="4000">nuits</div>
+
+        <!-- Line 2 words -->
+        <div class="word verse-1 floating reorganize" style="top: 80%; left: 20%;" data-delay="4800">les</div>
+        <div class="word verse-1 reorganize" style="top: 20%; left: 70%;" data-delay="5600">étoiles</div>
+        <div class="word verse-2 drifting reorganize" style="top: 55%; left: 5%;" data-delay="6400">murmurent</div>
+
+        <!-- Line 3 words -->
+        <div class="word verse-3 reorganize" style="top: 35%; left: 60%;" data-delay="7200">des</div>
+        <div class="word verse-3 floating reorganize" style="top: 75%; left: 85%;" data-delay="8000">secrets</div>
+        <div class="word verse-4 drifting reorganize" style="top: 40%; left: 25%;" data-delay="8800">oubliés</div>
+
+        <!-- Line 4 words -->
+        <div class="word verse-4 reorganize" style="top: 65%; left: 75%;" data-delay="9600">que</div>
+        <div class="word verse-1 floating reorganize" style="top: 15%; left: 45%;" data-delay="10400">seuls</div>
+        <div class="word verse-2 reorganize" style="top: 85%; left: 55%;" data-delay="11200">les</div>
+        <div class="word verse-3 drifting reorganize" style="top: 50%; left: 95%;" data-delay="12000">rêveurs</div>
+
+        <!-- Line 5 words -->
+        <div class="word verse-2 floating reorganize" style="top: 25%; left: 5%;" data-delay="12800">peuvent</div>
+        <div class="word verse-4 reorganize" style="top: 90%; left: 40%;" data-delay="13600">entendre.</div>
+
+        <div class="final-poem" style="display: none;">
+            Dans le silence des nuits<br>
+            les étoiles murmurent<br>
+            des secrets oubliés<br>
+            que seuls les rêveurs<br>
+            peuvent entendre.
+        </div>
+    </div>
+
+    <script>
+        // Make words appear one by one
+        document.querySelectorAll('.word').forEach(word => {
+            const delay = parseInt(word.getAttribute('data-delay'));
+            setTimeout(() => {
+                word.classList.add('show');
+            }, delay);
+        });
+
+        // Add interactive elements
+        document.querySelectorAll('.word').forEach(word => {
+            word.addEventListener('click', function() {
+                this.style.transform = 'scale(1.5) rotate(360deg)';
+                this.style.transition = 'all 1s ease';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 1000);
+            });
+        });
+
+        // Add some randomness to initial positions after they appear
+        setTimeout(() => {
+            document.querySelectorAll('.word.show').forEach(word => {
+                const randomX = Math.random() * 40 - 20;
+                const randomY = Math.random() * 20 - 10;
+                const currentTop = parseInt(word.style.top);
+                const currentLeft = parseInt(word.style.left);
+                word.style.top = (currentTop + randomY/5) + '%';
+                word.style.left = (currentLeft + randomX/5) + '%';
+            });
+        }, 15000);
+
+        // Reorganize words into readable positions
+        setTimeout(() => {
+            const words = [
+                {element: document.querySelector('[data-delay="800"]'), top: '35%', left: '30%'}, // Dans
+                {element: document.querySelector('[data-delay="1600"]'), top: '35%', left: '38%'}, // le
+                {element: document.querySelector('[data-delay="2400"]'), top: '35%', left: '44%'}, // silence
+                {element: document.querySelector('[data-delay="3200"]'), top: '35%', left: '58%'}, // des
+                {element: document.querySelector('[data-delay="4000"]'), top: '35%', left: '66%'}, // nuits
+                
+                {element: document.querySelector('[data-delay="4800"]'), top: '45%', left: '30%'}, // les
+                {element: document.querySelector('[data-delay="5600"]'), top: '45%', left: '38%'}, // étoiles
+                {element: document.querySelector('[data-delay="6400"]'), top: '45%', left: '54%'}, // murmurent
+                
+                {element: document.querySelector('[data-delay="7200"]'), top: '55%', left: '30%'}, // des
+                {element: document.querySelector('[data-delay="8000"]'), top: '55%', left: '38%'}, // secrets
+                {element: document.querySelector('[data-delay="8800"]'), top: '55%', left: '52%'}, // oubliés
+                
+                {element: document.querySelector('[data-delay="9600"]'), top: '65%', left: '30%'}, // que
+                {element: document.querySelector('[data-delay="10400"]'), top: '65%', left: '38%'}, // seuls
+                {element: document.querySelector('[data-delay="11200"]'), top: '65%', left: '48%'}, // les
+                {element: document.querySelector('[data-delay="12000"]'), top: '65%', left: '54%'}, // rêveurs
+                
+                {element: document.querySelector('[data-delay="12800"]'), top: '75%', left: '30%'}, // peuvent
+                {element: document.querySelector('[data-delay="13600"]'), top: '75%', left: '46%'} // entendre.
+            ];
+
+            words.forEach(({element, top, left}) => {
+                if (element) {
+                    element.style.top = top;
+                    element.style.left = left;
+                    element.classList.add('final-position');
+                    element.style.animation = 'none'; // Stop floating animations
+                    element.classList.remove('floating', 'drifting');
+                }
+            });
+        }, 18000);
+
+        // Show message about the final reveal
+        setTimeout(() => {
+            console.log("Le poème complet va bientôt apparaître...");
+        }, 12000);
+    </script>
+</body>
+</html>
